@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::Contributors;
+package Dist::Zilla::Plugin::MAXMIND::Contributors;
 
 use v5.10;
 
@@ -14,7 +14,13 @@ use Moose;
 with 'Dist::Zilla::Role::BeforeBuild';
 
 my $mailmap = <<'EOF';
-Dave Rolsky <autarch@urth.org> <devnull@localhost>
+Dave Rolsky <drolsky@maxmind.com> <autarch@urth.org>
+Greg Oschwald <goschwald@maxmind.com> Gregory Oschwald <goschwald@maxmind.com>
+Greg Oschwald <goschwald@maxmind.com> <oschwald@gmail.com>
+Mateu X Hunter <mhunter@maxmind.com> <hunter@missoula.org>
+Olaf Alders <oalders@maxmind.com> <olaf@wundersolutions.com>
+Ran Eilam <reilam@maxmind.com> <ran.eilam@gmail.com>
+Ran Eilam <reilam@maxmind.com> <eilara@users.noreply.github.com>
 EOF
 
 my %files = (

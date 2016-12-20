@@ -13,16 +13,16 @@ install_share dist => "share";
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "DROLSKY's plugin bundle",
+  "ABSTRACT" => "MAXMIND's plugin bundle",
   "AUTHOR" => "Dave Rolsky <autarch\@urth.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
     "File::ShareDir::Install" => "0.06"
   },
-  "DISTNAME" => "Dist-Zilla-PluginBundle-DROLSKY",
+  "DISTNAME" => "Dist-Zilla-PluginBundle-MAXMIND",
   "LICENSE" => "artistic_2",
   "MIN_PERL_VERSION" => "5.010000",
-  "NAME" => "Dist::Zilla::PluginBundle::DROLSKY",
+  "NAME" => "Dist::Zilla::PluginBundle::MAXMIND",
   "PREREQ_PM" => {
     "CPAN::Changes" => 0,
     "Code::TidyAll::Config::INI::Reader" => "0.44",

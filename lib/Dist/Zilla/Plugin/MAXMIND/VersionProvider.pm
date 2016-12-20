@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::VersionProvider;
+package Dist::Zilla::Plugin::MAXMIND::VersionProvider;
 
 use v5.10;
 

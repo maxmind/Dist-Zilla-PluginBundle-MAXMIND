@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::WeaverConfig;
+package Dist::Zilla::Plugin::MAXMIND::WeaverConfig;
 
 use v5.10;
 

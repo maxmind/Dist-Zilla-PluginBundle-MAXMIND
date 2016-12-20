@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::Git::CheckFor::CorrectBranch;
+package Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch;
 
 use v5.10;
 

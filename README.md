@@ -1,6 +1,6 @@
 # NAME
 
-Dist::Zilla::PluginBundle::DROLSKY - DROLSKY's plugin bundle
+Dist::Zilla::PluginBundle::MAXMIND - MAXMIND's plugin bundle
 
 # VERSION
 
@@ -13,14 +13,14 @@ version 0.78
     license = Artistic_2_0
     copyright_holder = Dave Rolsky
 
-    [@DROLSKY]
+    [@MAXMIND]
     dist = My-Module
     ; Fefault is MakeMaker - or set it to ModuleBuild
     make_tool = MakeMaker
     ; These files won't be added to tarball
     exclude_files = ...
-    ; Default is DROLSKY
-    authority = DROLSKY
+    ; Default is MAXMIND
+    authority = MAXMIND
     ; Passed to AutoPrereqs - can be repeated
     prereqs_skip = ...
     ; Passed to Test::Pod::Coverage::Configurable if set
@@ -73,7 +73,7 @@ This is more or less equivalent to the following `dist.ini`:
     [ConfirmRelease]
     [UploadToCPAN]
     ; Opens up the main module and finds a $VERSION
-    [DROLSKY::VersionProvider]
+    [MAXMIND::VersionProvider]
 
     [Authority]
     ; Configured by setting authority for the bundle
@@ -145,20 +145,20 @@ This is more or less equivalent to the following `dist.ini`:
 
     [PromptIfStale]
     phase  = build
-    module = Dist::Zilla::PluginBundle::DROLSKY
+    module = Dist::Zilla::PluginBundle::MAXMIND
 
     [PromptIfStale]
     phase = release
     check_all_plugins = 1
     check_all_prereqs = 1
     check_authordeps  = 1
-    skip = Dist::Zilla::Plugin::DROLSKY::CheckChangesHasContent
-    skip = Dist::Zilla::Plugin::DROLSKY::Contributors
-    skip = Dist::Zilla::Plugin::DROLSKY::Git::CheckFor::CorrectBranch
-    skip = Dist::Zilla::Plugin::DROLSKY::License
-    skip = Dist::Zilla::Plugin::DROLSKY::TidyAll
-    skip = Dist::Zilla::Plugin::DROLSKY::VersionProvider
-    skip = Pod::Weaver::PluginBundle::DROLSKY
+    skip = Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent
+    skip = Dist::Zilla::Plugin::MAXMIND::Contributors
+    skip = Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch
+    skip = Dist::Zilla::Plugin::MAXMIND::License
+    skip = Dist::Zilla::Plugin::MAXMIND::TidyAll
+    skip = Dist::Zilla::Plugin::MAXMIND::VersionProvider
+    skip = Pod::Weaver::PluginBundle::MAXMIND
 
     [Test::Pod::Coverage::Configurable]
     ; Configured by setting pod_coverage_class for the bundle
@@ -199,17 +199,17 @@ This is more or less equivalent to the following `dist.ini`:
     is_strict = 1
 
     ; Generates/updates a .mailmap file
-    [DROLSKY::Contributors]
+    [MAXMIND::Contributors]
     [Git::Contributors]
 
     [SurgicalPodWeaver]
-    ; See Pod::Weaver::PluginBundle::DROLSKY in this same distro for more info
-    config_plugin = @DROLSKY
+    ; See Pod::Weaver::PluginBundle::MAXMIND in this same distro for more info
+    config_plugin = @MAXMIND
 
     ; Nasty hack so I can pass config from the dist.ini to the Pod::Weaver
     ; bundle. Currently used so I can set
-    ; "DROLSKY::WeaverConfig.include_donations_pod = 0" in a dist.ini file.
-    [DROLSKY::WeaverConfig]
+    ; "MAXMIND::WeaverConfig.include_donations_pod = 0" in a dist.ini file.
+    [MAXMIND::WeaverConfig]
 
     [ReadmeAnyFromPod / README.md in build]
     type     = markdown
@@ -218,7 +218,7 @@ This is more or less equivalent to the following `dist.ini`:
     phase    = build
 
     [GenerateFile::FromShareDir / Generate CONTRIBUTING.md]
-    -dist     = Dist-Zilla-PluginBundle-DROLSKY
+    -dist     = Dist-Zilla-PluginBundle-MAXMIND
     -filename = CONTRIBUTING.md
     ; This is determined by looking through the distro for .xs files.
     has_xs    = ...
@@ -232,23 +232,23 @@ This is more or less equivalent to the following `dist.ini`:
     ; Like the default License plugin except that it defaults to Artistic 2.0.
     ; Also, if the copyright_year for the bundle is not this year, it passes
     ; something like "2014-2016" to Software::License.
-    [DROLSKY::License]
+    [MAXMIND::License]
 
     [CheckPrereqsIndexed]
 
     ; More or less like Dist::Zilla::Plugin::CheckChangesHasContent but uses
     ; CPAN::Changes to parse the Changes file.
-    [DROLSKY::CheckChangesHasContent]
+    [MAXMIND::CheckChangesHasContent]
 
     ; Just like Dist::Zilla::Plugin::Git::CheckFor::CorrectBranch except that
     ; it allows releases from any branch for TRIAL
     ; releases. https://github.com/RsrchBoy/dist-zilla-pluginbundle-git-checkfor/issues/24
-    [DROLSKY::Git::CheckFor::CorrectBranch]
+    [MAXMIND::Git::CheckFor::CorrectBranch]
 
     [Git::CheckFor::MergeConflicts]
 
     ; Generates/updates tidyall.ini, perlcriticrc, and perltidyrc
-    [DROLSKY::TidyAll]
+    [MAXMIND::TidyAll]
 
     ; The allow_dirty list is basically all of the generated or munged files
     ; in the distro, including:
@@ -280,7 +280,7 @@ This is more or less equivalent to the following `dist.ini`:
 
 # SUPPORT
 
-Bugs may be submitted through [the RT bug tracker](http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-PluginBundle-DROLSKY)
+Bugs may be submitted through [the RT bug tracker](http://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-PluginBundle-MAXMIND)
 (or [bug-dist-zilla-pluginbundle-drolsky@rt.cpan.org](mailto:bug-dist-zilla-pluginbundle-drolsky@rt.cpan.org)).
 
 I am also usually active on IRC as 'autarch' on `irc://irc.perl.org`.

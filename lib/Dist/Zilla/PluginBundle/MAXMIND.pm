@@ -1,4 +1,4 @@
-package Dist::Zilla::PluginBundle::DROLSKY;
+package Dist::Zilla::PluginBundle::MAXMIND;
 
 use v5.10;
 
@@ -21,12 +21,12 @@ use Dist::Zilla::Plugin::CheckSelfDependency;
 use Dist::Zilla::Plugin::CheckStrictVersion;
 use Dist::Zilla::Plugin::CheckVersionIncrement;
 use Dist::Zilla::Plugin::CopyFilesFromBuild;
-use Dist::Zilla::Plugin::DROLSKY::CheckChangesHasContent;
-use Dist::Zilla::Plugin::DROLSKY::Contributors;
-use Dist::Zilla::Plugin::DROLSKY::License;
-use Dist::Zilla::Plugin::DROLSKY::TidyAll;
-use Dist::Zilla::Plugin::DROLSKY::VersionProvider;
-use Dist::Zilla::Plugin::DROLSKY::WeaverConfig;
+use Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent;
+use Dist::Zilla::Plugin::MAXMIND::Contributors;
+use Dist::Zilla::Plugin::MAXMIND::License;
+use Dist::Zilla::Plugin::MAXMIND::TidyAll;
+use Dist::Zilla::Plugin::MAXMIND::VersionProvider;
+use Dist::Zilla::Plugin::MAXMIND::WeaverConfig;
 use Dist::Zilla::Plugin::GenerateFile::FromShareDir;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
@@ -88,7 +88,7 @@ has make_tool => (
 has authority => (
     is      => 'ro',
     isa     => 'Str',
-    default => 'DROLSKY',
+    default => 'MAXMIND',
 );
 
 has prereqs_skip => (
@@ -253,6 +253,15 @@ around BUILDARGS => sub {
         $args{$key} //= [];
     }
 
+    # Why isn't this just an additional default on the attribute? Because the
+    # config parser for dzil will always pass in an empty arrayref even if no
+    # value is set in the config file, meaning that a default attribute value
+    # will never be used.
+    $args{pod_coverage_also_private} = [
+        'qr/\\A (?: BUILD(?:ARGS)? | DEMOLISH ) \\z/x',
+        @{ $args{pod_coverage_also_private} || [] },
+    ];
+
     return \%args;
 };
 
@@ -288,9 +297,9 @@ sub _build_plugins {
         'InstallGuide',
         'CPANFile',
         $self->_maybe_ppport_plugin,
-        'DROLSKY::License',
+        'MAXMIND::License',
         $self->_release_check_plugins,
-        'DROLSKY::TidyAll',
+        'MAXMIND::TidyAll',
         $self->_git_plugins,
     ];
 }
@@ -331,7 +340,7 @@ sub _build_exclude {
 sub _basic_plugins {
 
     # These are a subset of the @Basic bundle except for CheckVersionIncrement
-    # and DROLSKY::VersionProvider.
+    # and MAXMIND::VersionProvider.
     qw(
         ManifestSkip
         License
@@ -342,7 +351,7 @@ sub _basic_plugins {
         TestRelease
         ConfirmRelease
         UploadToCPAN
-        DROLSKY::VersionProvider
+        MAXMIND::VersionProvider
     );
 }
 
@@ -559,13 +568,13 @@ sub _prompt_if_stale_plugin {
                 check_authordeps  => 1,
                 skip              => [
                     qw(
-                        Dist::Zilla::Plugin::DROLSKY::CheckChangesHasContent
-                        Dist::Zilla::Plugin::DROLSKY::Contributors
-                        Dist::Zilla::Plugin::DROLSKY::Git::CheckFor::CorrectBranch
-                        Dist::Zilla::Plugin::DROLSKY::License
-                        Dist::Zilla::Plugin::DROLSKY::TidyAll
-                        Dist::Zilla::Plugin::DROLSKY::VersionProvider
-                        Pod::Weaver::PluginBundle::DROLSKY
+                        Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent
+                        Dist::Zilla::Plugin::MAXMIND::Contributors
+                        Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch
+                        Dist::Zilla::Plugin::MAXMIND::License
+                        Dist::Zilla::Plugin::MAXMIND::TidyAll
+                        Dist::Zilla::Plugin::MAXMIND::VersionProvider
+                        Pod::Weaver::PluginBundle::MAXMIND
                         )
                 ],
             }
@@ -628,10 +637,17 @@ sub _all_stopwords {
 
 sub _default_stopwords {
     return qw(
-        drolsky
-        DROLSKY
-        DROLSKY's
+        MAXMIND
+        MAXMIND's
         PayPal
+        Alders
+        Alders'
+        Eilam
+        Eilam's
+        MaxMind
+        MaxMind's
+        Oschwald
+        Oschwald's
         Rolsky
         Rolsky's
     );
@@ -667,7 +683,7 @@ sub _extra_test_plugins {
 
 sub _contributors_plugins {
     qw(
-        DROLSKY::Contributors
+        MAXMIND::Contributors
         Git::Contributors
     );
 }
@@ -676,10 +692,10 @@ sub _pod_weaver_plugin {
     return (
         [
             SurgicalPodWeaver => {
-                config_plugin => '@DROLSKY',
+                config_plugin => '@MAXMIND',
             },
         ],
-        'DROLSKY::WeaverConfig',
+        'MAXMIND::WeaverConfig',
     );
 }
 
@@ -719,8 +735,8 @@ sub _release_check_plugins {
         qw(
             CheckSelfDependency
             CheckPrereqsIndexed
-            DROLSKY::CheckChangesHasContent
-            DROLSKY::Git::CheckFor::CorrectBranch
+            MAXMIND::CheckChangesHasContent
+            MAXMIND::Git::CheckFor::CorrectBranch
             Git::CheckFor::MergeConflicts
             ),
     );
@@ -786,7 +802,7 @@ __PACKAGE__->meta->make_immutable;
 
 1;
 
-# ABSTRACT: DROLSKY's plugin bundle
+# ABSTRACT: MAXMIND's plugin bundle
 
 __END__
 
@@ -799,14 +815,14 @@ __END__
     license = Artistic_2_0
     copyright_holder = Dave Rolsky
 
-    [@DROLSKY]
+    [@MAXMIND]
     dist = My-Module
     ; Fefault is MakeMaker - or set it to ModuleBuild
     make_tool = MakeMaker
     ; These files won't be added to tarball
     exclude_files = ...
-    ; Default is DROLSKY
-    authority = DROLSKY
+    ; Default is MAXMIND
+    authority = MAXMIND
     ; Passed to AutoPrereqs - can be repeated
     prereqs_skip = ...
     ; Passed to Test::Pod::Coverage::Configurable if set
@@ -859,7 +875,7 @@ This is more or less equivalent to the following F<dist.ini>:
     [ConfirmRelease]
     [UploadToCPAN]
     ; Opens up the main module and finds a $VERSION
-    [DROLSKY::VersionProvider]
+    [MAXMIND::VersionProvider]
 
     [Authority]
     ; Configured by setting authority for the bundle
@@ -931,20 +947,20 @@ This is more or less equivalent to the following F<dist.ini>:
 
     [PromptIfStale]
     phase  = build
-    module = Dist::Zilla::PluginBundle::DROLSKY
+    module = Dist::Zilla::PluginBundle::MAXMIND
 
     [PromptIfStale]
     phase = release
     check_all_plugins = 1
     check_all_prereqs = 1
     check_authordeps  = 1
-    skip = Dist::Zilla::Plugin::DROLSKY::CheckChangesHasContent
-    skip = Dist::Zilla::Plugin::DROLSKY::Contributors
-    skip = Dist::Zilla::Plugin::DROLSKY::Git::CheckFor::CorrectBranch
-    skip = Dist::Zilla::Plugin::DROLSKY::License
-    skip = Dist::Zilla::Plugin::DROLSKY::TidyAll
-    skip = Dist::Zilla::Plugin::DROLSKY::VersionProvider
-    skip = Pod::Weaver::PluginBundle::DROLSKY
+    skip = Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent
+    skip = Dist::Zilla::Plugin::MAXMIND::Contributors
+    skip = Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch
+    skip = Dist::Zilla::Plugin::MAXMIND::License
+    skip = Dist::Zilla::Plugin::MAXMIND::TidyAll
+    skip = Dist::Zilla::Plugin::MAXMIND::VersionProvider
+    skip = Pod::Weaver::PluginBundle::MAXMIND
 
     [Test::Pod::Coverage::Configurable]
     ; Configured by setting pod_coverage_class for the bundle
@@ -985,17 +1001,17 @@ This is more or less equivalent to the following F<dist.ini>:
     is_strict = 1
 
     ; Generates/updates a .mailmap file
-    [DROLSKY::Contributors]
+    [MAXMIND::Contributors]
     [Git::Contributors]
 
     [SurgicalPodWeaver]
-    ; See Pod::Weaver::PluginBundle::DROLSKY in this same distro for more info
-    config_plugin = @DROLSKY
+    ; See Pod::Weaver::PluginBundle::MAXMIND in this same distro for more info
+    config_plugin = @MAXMIND
 
     ; Nasty hack so I can pass config from the dist.ini to the Pod::Weaver
     ; bundle. Currently used so I can set
-    ; "DROLSKY::WeaverConfig.include_donations_pod = 0" in a dist.ini file.
-    [DROLSKY::WeaverConfig]
+    ; "MAXMIND::WeaverConfig.include_donations_pod = 0" in a dist.ini file.
+    [MAXMIND::WeaverConfig]
 
     [ReadmeAnyFromPod / README.md in build]
     type     = markdown
@@ -1004,7 +1020,7 @@ This is more or less equivalent to the following F<dist.ini>:
     phase    = build
 
     [GenerateFile::FromShareDir / Generate CONTRIBUTING.md]
-    -dist     = Dist-Zilla-PluginBundle-DROLSKY
+    -dist     = Dist-Zilla-PluginBundle-MAXMIND
     -filename = CONTRIBUTING.md
     ; This is determined by looking through the distro for .xs files.
     has_xs    = ...
@@ -1018,23 +1034,23 @@ This is more or less equivalent to the following F<dist.ini>:
     ; Like the default License plugin except that it defaults to Artistic 2.0.
     ; Also, if the copyright_year for the bundle is not this year, it passes
     ; something like "2014-2016" to Software::License.
-    [DROLSKY::License]
+    [MAXMIND::License]
 
     [CheckPrereqsIndexed]
 
     ; More or less like Dist::Zilla::Plugin::CheckChangesHasContent but uses
     ; CPAN::Changes to parse the Changes file.
-    [DROLSKY::CheckChangesHasContent]
+    [MAXMIND::CheckChangesHasContent]
 
     ; Just like Dist::Zilla::Plugin::Git::CheckFor::CorrectBranch except that
     ; it allows releases from any branch for TRIAL
     ; releases. https://github.com/RsrchBoy/dist-zilla-pluginbundle-git-checkfor/issues/24
-    [DROLSKY::Git::CheckFor::CorrectBranch]
+    [MAXMIND::Git::CheckFor::CorrectBranch]
 
     [Git::CheckFor::MergeConflicts]
 
     ; Generates/updates tidyall.ini, perlcriticrc, and perltidyrc
-    [DROLSKY::TidyAll]
+    [MAXMIND::TidyAll]
 
     ; The allow_dirty list is basically all of the generated or munged files
     ; in the distro, including:

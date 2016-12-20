@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::TidyAll;
+package Dist::Zilla::Plugin::MAXMIND::TidyAll;
 
 use v5.10;
 

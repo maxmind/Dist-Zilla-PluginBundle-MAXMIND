@@ -233,7 +233,7 @@
 
 0.40 2015-11-24
 
-- Added a new plugin, DROLSKY::Git::CheckFor::CorrectBranch. This plugin only
+- Added a new plugin, MAXMIND::Git::CheckFor::CorrectBranch. This plugin only
   checks that the branch is correct on non-TRIAL releases.
 
 
@@ -336,7 +336,7 @@
 
 0.22     2014-11-02
 
-- The DROLSKY::Contributors plugin now leaves existing .mailmap and weaver.ini
+- The MAXMIND::Contributors plugin now leaves existing .mailmap and weaver.ini
   files alone.
 
 - Exclude plugins shipped with this bundle when checking for stale modules.

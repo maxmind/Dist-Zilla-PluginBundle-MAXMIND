@@ -1,4 +1,4 @@
-package Pod::Weaver::PluginBundle::DROLSKY;
+package Pod::Weaver::PluginBundle::MAXMIND;
 
 use strict;
 use warnings;
@@ -7,6 +7,7 @@ our $VERSION = '0.79';
 
 use namespace::autoclean -also => ['_exp'];
 
+use Dist::Zilla::Plugin::PodWeaver;
 use Module::Runtime qw( use_module );
 use PadWalker qw( peek_sub );
 use Pod::Elemental::Transformer::List;
@@ -38,8 +39,11 @@ sub configure {
     # containing plugin specifications. The goal is to make this look as close
     # to what weaver.ini looks like as possible.
 
-    # I wouldn't have to do this ugliness if I could have some configuration values passed in from weaver.ini or
-    # the [PodWeaver] plugin's use of config_plugin (where I could define a 'licence' option)
+    # I wouldn't have to do this ugliness if I could have some configuration
+    # values passed in from weaver.ini or the [PodWeaver] plugin's use of
+    # config_plugin (where I could define a 'licence' option)
+
+    ## no critic (Subroutines::ProhibitCallsToUnexportedSubs)
     my $podweaver_plugin
         = ${ peek_sub( \&Dist::Zilla::Plugin::PodWeaver::weaver )->{'$self'}
         };
@@ -58,7 +62,7 @@ sub configure {
         = $license_plugin ? $license_plugin->filename : 'LICENSE';
 
     my $config
-        = $zilla->plugin_named( $bundle_prefix . '/DROLSKY::WeaverConfig' );
+        = $zilla->plugin_named( $bundle_prefix . '/MAXMIND::WeaverConfig' );
     my $include_donations = $zilla->copyright_holder =~ /Rolsky/
         && $config->include_donations_pod;
 
@@ -109,7 +113,7 @@ sub configure {
             . '>.'
         : (),
 
-    ($distmeta->{x_authority} // '') eq 'cpan:DROLSKY'
+    ($distmeta->{x_authority} // '') eq 'cpan:MAXMIND'
     ? q{I am also usually active on IRC as 'autarch' on C<irc://irc.perl.org>.}
     : (),
 ) }}
@@ -226,7 +230,7 @@ sub _expand_config {
 
     use_module( $class, $payload->{':version'} ) if $payload->{':version'};
 
-    # prepend '@DROLSKY/' to each class name,
+    # prepend '@MAXMIND/' to each class name,
     # except for Generic and Collect which are left alone.
     $name = '@' . $self->_prefix . '/' . $name
         if $class ne _exp('Generic')
@@ -237,7 +241,7 @@ sub _expand_config {
 
 1;
 
-# ABSTRACT: A plugin bundle for pod woven by DROLSKY
+# ABSTRACT: A plugin bundle for pod woven by MAXMIND
 
 __END__
 
@@ -249,16 +253,16 @@ __END__
 
 In your F<weaver.ini>:
 
-    [@DROLSKY]
+    [@MAXMIND]
 
 Or in your F<dist.ini>
 
     [PodWeaver]
-    config_plugin = @DROLSKY
+    config_plugin = @MAXMIND
 
 It is also used automatically when your F<dist.ini> contains:
 
-    [@DROLSKY]
+    [@MAXMIND]
     :version = 0.094
 
 =head1 DESCRIPTION
@@ -316,7 +320,7 @@ following F<weaver.ini>, minus some optimizations:
     match_anywhere = 0
 
     ; Can be disabled in dist.ini with
-    ;   DROLSKY::WeaverConfig.include_donations_pod = 0
+    ;   MAXMIND::WeaverConfig.include_donations_pod = 0
     [GenerateSection / generate DONATIONS]
     title = DONATIONS
     main_module_only = 1
@@ -375,14 +379,14 @@ be possible without updates to L<Pod::Weaver>.)
 This F<weaver.ini> will let you use a custom C<COPYRIGHT AND LICENSE> section
 and still use the plugin bundle:
 
-    [@DROLSKY]
+    [@MAXMIND]
     [AllowOverride / OverrideLegal]
     header_re = ^COPYRIGHT
     match_anywhere = 1
 
 =head1 ADDING STOPWORDS FOR SPELLING TESTS
 
-As noted in L<Dist::Zilla::PluginBundle::DROLSKY>, stopwords for
+As noted in L<Dist::Zilla::PluginBundle::MAXMIND>, stopwords for
 spelling tests can be added by adding a directive to pod:
 
     =for stopwords foo bar baz
@@ -401,6 +405,6 @@ woven ahead of everything else:
 * L<Pod::Weaver>
 * L<Pod::Weaver::PluginBundle::Default>
 * L<Dist::Zilla::Plugin::PodWeaver>
-* L<Dist::Zilla::PluginBundle::DROLSKY>
+* L<Dist::Zilla::PluginBundle::MAXMIND>
 
 =cut

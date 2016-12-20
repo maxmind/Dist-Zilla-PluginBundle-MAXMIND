@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::License;
+package Dist::Zilla::Plugin::MAXMIND::License;
 
 use v5.10;
 
@@ -29,14 +29,15 @@ sub provide_license {
             '=' => q{},
             q{} => 'Software::License::'
         },
-        $self->zilla()->_license_class() // 'Artistic_2_0',
+        ## no critic (Subroutines::ProtectPrivateSubs)
+        $self->zilla->_license_class // 'Perl_5',
     );
 
     use_module($license_class);
 
     return $license_class->new(
         {
-            holder => $args->{copyright_holder} || 'David Rolsky',
+            holder => $args->{copyright_holder} || 'MaxMind, Inc.',
             year => $years,
         },
     );

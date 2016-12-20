@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::DROLSKY::CheckChangesHasContent;
+package Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent;
 
 use v5.10;
 
