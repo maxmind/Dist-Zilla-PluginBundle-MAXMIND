@@ -31,6 +31,7 @@ requires "Dist::Zilla::Plugin::MojibakeTests" => "0";
 requires "Dist::Zilla::Plugin::NextRelease" => "0";
 requires "Dist::Zilla::Plugin::PPPort" => "0";
 requires "Dist::Zilla::Plugin::PodSyntaxTests" => "0";
+requires "Dist::Zilla::Plugin::PodWeaver" => "0";
 requires "Dist::Zilla::Plugin::PromptIfStale" => "0.050";
 requires "Dist::Zilla::Plugin::ReadmeAnyFromPod" => "0";
 requires "Dist::Zilla::Plugin::RunExtraTests" => "0";
