@@ -209,7 +209,7 @@ has use_github_homepage => (
 has use_github_issues => (
     is      => 'ro',
     isa     => 'Bool',
-    default => 0,
+    default => 1,
 );
 
 has _plugins => (
