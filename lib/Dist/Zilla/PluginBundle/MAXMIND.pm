@@ -27,7 +27,7 @@ use Dist::Zilla::Plugin::MAXMIND::License;
 use Dist::Zilla::Plugin::MAXMIND::TidyAll;
 use Dist::Zilla::Plugin::MAXMIND::VersionProvider;
 use Dist::Zilla::Plugin::MAXMIND::WeaverConfig;
-use Dist::Zilla::Plugin::GenerateFile::FromShareDir;
+use Dist::Zilla::Plugin::GenerateFile::FromShareDir 0.013;
 use Dist::Zilla::Plugin::Git::Check;
 use Dist::Zilla::Plugin::Git::CheckFor::MergeConflicts;
 use Dist::Zilla::Plugin::Git::Commit;
