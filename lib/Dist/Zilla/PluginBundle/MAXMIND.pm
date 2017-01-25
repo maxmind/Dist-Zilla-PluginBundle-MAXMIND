@@ -300,6 +300,7 @@ sub _build_plugins {
         'MAXMIND::License',
         $self->_release_check_plugins,
         'MAXMIND::TidyAll',
+        $self->_upload_to_cpan_plugin,
         $self->_git_plugins,
     ];
 }
@@ -350,7 +351,6 @@ sub _basic_plugins {
         CheckVersionIncrement
         TestRelease
         ConfirmRelease
-        UploadToCPAN
         MAXMIND::VersionProvider
     );
 }
@@ -740,6 +740,12 @@ sub _release_check_plugins {
             Git::CheckFor::MergeConflicts
             ),
     );
+}
+
+sub _upload_to_cpan_plugin {
+    return [
+        UploadToCPAN => { pause_cfg_file => '.pause-maxmind' },
+    ];
 }
 
 sub _git_plugins {
