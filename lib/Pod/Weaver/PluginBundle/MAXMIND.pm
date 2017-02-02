@@ -3,7 +3,7 @@ package Pod::Weaver::PluginBundle::MAXMIND;
 use strict;
 use warnings;
 
-our $VERSION = '0.80';
+our $VERSION = '0.81';
 
 use namespace::autoclean -also => ['_exp'];
 
