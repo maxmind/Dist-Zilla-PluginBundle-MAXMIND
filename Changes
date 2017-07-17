@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+0.81     2017-07-17
+
 - Updated perlcriticrc. Added Freenode::WhileDiamondDefaultAssignment.
 
 
