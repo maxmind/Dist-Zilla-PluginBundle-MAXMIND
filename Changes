@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Updated perlcriticrc. Added Freenode::WhileDiamondDefaultAssignment.
+
+
 0.80     2017-02-02
 
 - Use ~/.pause-maxmind rather than ~/.pause.
