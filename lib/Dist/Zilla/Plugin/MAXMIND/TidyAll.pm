@@ -138,7 +138,6 @@ add_packages = Test::Builder
 
 # "use v5.14" is more readable than "use 5.014"
 [-ValuesAndExpressions::ProhibitVersionStrings]
-
 EOF
 
 sub before_build {
