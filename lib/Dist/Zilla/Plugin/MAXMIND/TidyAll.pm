@@ -11,8 +11,8 @@ our $VERSION = '0.82';
 
 use Code::TidyAll::Config::INI::Reader 0.44;
 use List::Util 1.45 qw( uniqstr );
-use Path::Class qw( file );
 use Path::Iterator::Rule;
+use Path::Tiny qw( path );
 use Perl::Critic::Freenode 0.021;
 use Perl::Critic::Moose 1.05;
 use Sort::ByExample qw( sbe );
@@ -143,7 +143,7 @@ EOF
 sub before_build {
     my $self = shift;
 
-    file('tidyall.ini')->spew( $self->_tidyall_ini_content );
+    path('tidyall.ini')->spew( $self->_tidyall_ini_content );
 
     $self->_maybe_write_file( 'perlcriticrc', $perlcriticrc );
     $self->_maybe_write_file( 'perltidyrc',   $perltidyrc );
@@ -281,7 +281,7 @@ sub _maybe_write_file {
 
     return if -e $file;
 
-    file($file)->spew($content);
+    path($file)->spew($content);
 
     return;
 }
