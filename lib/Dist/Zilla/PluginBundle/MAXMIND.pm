@@ -624,12 +624,7 @@ sub _all_stopwords {
     push @stopwords, @{ $self->stopwords };
 
     if ( $self->_has_stopwords_file ) {
-        open my $fh, '<:encoding(UTF-8)', $self->stopwords_file;
-        while (<$fh>) {
-            chomp;
-            push @stopwords, $_;
-        }
-        close $fh;
+        push @stopwords, path( $self->stopwords_file )->lines_utf8;
     }
 
     return \@stopwords;
