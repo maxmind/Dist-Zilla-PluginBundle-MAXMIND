@@ -22,10 +22,6 @@ severity = 3
 [Documentation::RequirePackageMatchesPodName]
 severity = 3
 
-[Documentation::PodSpelling]
-severity = 3
-stop_words_file = .stopwords
-
 [Freenode::WhileDiamondDefaultAssignment]
 set_themes = core
 
