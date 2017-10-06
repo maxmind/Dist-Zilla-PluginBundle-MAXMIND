@@ -1,5 +1,9 @@
 {{$NEXT}}
 
+- Synced Perl::Tidy and Perl::Critic configuration files with internal
+  files.
+
+
 0.81     2017-07-17
 
 - Updated perlcriticrc. Added Freenode::WhileDiamondDefaultAssignment.
