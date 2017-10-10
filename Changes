@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+- Added missing Path::Tiny import.
+
+
 0.82     2017-10-06
 
 - Synced Perl::Tidy and Perl::Critic configuration files with internal
