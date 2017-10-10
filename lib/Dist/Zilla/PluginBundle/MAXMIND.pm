@@ -66,6 +66,7 @@ use Dist::Zilla::Plugin::Test::TidyAll 0.04;
 use Dist::Zilla::Plugin::Test::Version;
 use Parse::PMFile;
 use Path::Iterator::Rule;
+use Path::Tiny qw( path );
 
 use Moose;
 
