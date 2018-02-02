@@ -42,7 +42,7 @@ my $perlcriticrc = <<'EOF';
 severity = 3
 verbose = 11
 
-theme = core + pbp + bugs + maintenance + cosmetic + complexity + security + tests + moose
+theme = (core && (pbp || bugs || maintenance || cosmetic || complexity || security || tests)) || moose
 
 program-extensions = pl psgi t
 
