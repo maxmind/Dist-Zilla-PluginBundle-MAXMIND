@@ -289,6 +289,7 @@ Dave Rolsky <autarch@urth.org>
 - Olaf Alders <oalders@maxmind.com>
 - Patrick Cronin <PatrickCronin@users.noreply.github.com>
 - Patrick Cronin <pcronin@maxmind.com>
+- Will Storey <wstorey@maxmind.com>
 
 # COPYRIGHT AND LICENSE
 
