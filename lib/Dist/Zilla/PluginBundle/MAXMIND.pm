@@ -452,7 +452,7 @@ sub _meta_plugins {
             MetaConfig
             MetaJSON
             MetaYAML
-            ),
+        ),
     );
 }
 
@@ -575,7 +575,7 @@ sub _prompt_if_stale_plugin {
                         Dist::Zilla::Plugin::MAXMIND::TidyAll
                         Dist::Zilla::Plugin::MAXMIND::VersionProvider
                         Pod::Weaver::PluginBundle::MAXMIND
-                        )
+                    )
                 ],
             }
         ],
@@ -660,7 +660,7 @@ sub _extra_test_plugins {
             Test::NoTabs
             Test::Portability
             Test::Synopsis
-            ),
+        ),
         [
             'Test::TidyAll' => {
                 verbose => 1,
@@ -732,7 +732,7 @@ sub _release_check_plugins {
             CheckPrereqsIndexed
             MAXMIND::CheckChangesHasContent
             Git::CheckFor::MergeConflicts
-            ),
+        ),
     );
 }
 
@@ -766,7 +766,7 @@ sub _git_plugins {
         qw(
             Git::Tag
             Git::Push
-            ),
+        ),
 
         # Bump all module versions.
         'BumpVersionAfterRelease',
@@ -794,7 +794,7 @@ sub _build_allow_dirty {
         qw(
             Changes
             tidyall.ini
-            )
+        )
     ];
 }
 
