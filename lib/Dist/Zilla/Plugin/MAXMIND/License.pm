@@ -38,7 +38,7 @@ sub provide_license {
     return $license_class->new(
         {
             holder => $args->{copyright_holder} || 'MaxMind, Inc.',
-            year => $years,
+            year   => $years,
         },
     );
 }

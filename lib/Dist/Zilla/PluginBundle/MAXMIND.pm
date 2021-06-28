@@ -452,7 +452,7 @@ sub _meta_plugins {
             MetaConfig
             MetaJSON
             MetaYAML
-            ),
+        ),
     );
 }
 
@@ -571,12 +571,11 @@ sub _prompt_if_stale_plugin {
                     qw(
                         Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent
                         Dist::Zilla::Plugin::MAXMIND::Contributors
-                        Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch
                         Dist::Zilla::Plugin::MAXMIND::License
                         Dist::Zilla::Plugin::MAXMIND::TidyAll
                         Dist::Zilla::Plugin::MAXMIND::VersionProvider
                         Pod::Weaver::PluginBundle::MAXMIND
-                        )
+                    )
                 ],
             }
         ],
@@ -661,7 +660,7 @@ sub _extra_test_plugins {
             Test::NoTabs
             Test::Portability
             Test::Synopsis
-            ),
+        ),
         [
             'Test::TidyAll' => {
                 verbose => 1,
@@ -732,9 +731,8 @@ sub _release_check_plugins {
             CheckSelfDependency
             CheckPrereqsIndexed
             MAXMIND::CheckChangesHasContent
-            MAXMIND::Git::CheckFor::CorrectBranch
             Git::CheckFor::MergeConflicts
-            ),
+        ),
     );
 }
 
@@ -768,7 +766,7 @@ sub _git_plugins {
         qw(
             Git::Tag
             Git::Push
-            ),
+        ),
 
         # Bump all module versions.
         'BumpVersionAfterRelease',
@@ -796,7 +794,7 @@ sub _build_allow_dirty {
         qw(
             Changes
             tidyall.ini
-            )
+        )
     ];
 }
 
@@ -958,7 +956,6 @@ This is more or less equivalent to the following F<dist.ini>:
     check_authordeps  = 1
     skip = Dist::Zilla::Plugin::MAXMIND::CheckChangesHasContent
     skip = Dist::Zilla::Plugin::MAXMIND::Contributors
-    skip = Dist::Zilla::Plugin::MAXMIND::Git::CheckFor::CorrectBranch
     skip = Dist::Zilla::Plugin::MAXMIND::License
     skip = Dist::Zilla::Plugin::MAXMIND::TidyAll
     skip = Dist::Zilla::Plugin::MAXMIND::VersionProvider
@@ -1043,11 +1040,6 @@ This is more or less equivalent to the following F<dist.ini>:
     ; More or less like Dist::Zilla::Plugin::CheckChangesHasContent but uses
     ; CPAN::Changes to parse the Changes file.
     [MAXMIND::CheckChangesHasContent]
-
-    ; Just like Dist::Zilla::Plugin::Git::CheckFor::CorrectBranch except that
-    ; it allows releases from any branch for TRIAL
-    ; releases. https://github.com/RsrchBoy/dist-zilla-pluginbundle-git-checkfor/issues/24
-    [MAXMIND::Git::CheckFor::CorrectBranch]
 
     [Git::CheckFor::MergeConflicts]
 
